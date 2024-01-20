@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Lot;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,6 +15,14 @@ return new class extends Migration
     {
         Schema::create('bids', function (Blueprint $table) {
             $table->id();
+            $table->float('amount');
+            $table->foreignIdFor(Lot::class);
+            $table->foreignIdFor(User::class);
+            $table->string('email');
+            $table->string('phone');
+            $table->string('firstname');
+            $table->string('lastname');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
