@@ -38,15 +38,12 @@ return new class extends Migration
             $table->string('shipping_method');
             $table->string('shipping_description');
 
-            $table->string('locale')->default('en_US');
-
             $table->string('customer_email');
             $table->string('customer_firstname');
             $table->string('customer_lastname');
             $table->foreignIdFor(Bid::class)->constrained()->restrictOnDelete();
             $table->foreignIdFor(Lot::class)->constrained()->restrictOnDelete();
             $table->foreignIdFor(User::class)->constrained()->restrictOnDelete();
-
             $table->softDeletes();
             $table->timestamps();
         });
