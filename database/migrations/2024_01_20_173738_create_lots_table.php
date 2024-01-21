@@ -29,6 +29,7 @@ return new class extends Migration
             $table->integer('priority')->default(0);
             $table->boolean('status')->default(false);
             $table->foreignIdFor(State::class)->references('id')->on('states');
+            $table->boolean('processed_after_expiration')->default(false);
             $table->softDeletes();
             $table->timestamps();
         });
