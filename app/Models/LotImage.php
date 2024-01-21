@@ -15,6 +15,7 @@ class LotImage extends Model
         'base64_thumbnail',
         'width',
         'height',
+        'primary',
         'deleted_at'
     ];
 

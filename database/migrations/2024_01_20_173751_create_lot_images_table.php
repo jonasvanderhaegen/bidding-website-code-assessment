@@ -19,6 +19,7 @@ return new class extends Migration
             $table->longText('base64_thumbnail');
             $table->integer('width');
             $table->integer('height');
+            $table->boolean('primary')->default(false);
             $table->foreignIdFor(Lot::class);
             $table->softDeletes();
             $table->timestamps();
