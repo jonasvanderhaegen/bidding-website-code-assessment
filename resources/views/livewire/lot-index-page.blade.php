@@ -80,11 +80,22 @@
     @foreach($this->lots as $lot)
 
     <section class="bg-white dark:bg-gray-900">
-        <div class="gap-8 items-center py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
-            <img class="w-full dark:hidden" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/cta/cta-dashboard-mockup.svg" alt="dashboard image">
-            <img class="w-full hidden dark:block" src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/cta/cta-dashboard-mockup-dark.svg" alt="dashboard image">
+        <div class="gap-8 py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
+
+            @if($lot->images()->wherePrimary(true)->count())
+                <img class="w-full" src="{{ '../' . $lot->images()->wherePrimary(true)->first()->base64_normal }}" />
+            @else
+                <img class="w-full" src="https://placehold.co/600x400?text=No+primary+image" alt="dashboard image">
+            @endif
+
             <div class="mt-4 md:mt-0">
                 <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white"><a wire:navigate href="{{ route('lot.show', ['lot' => $lot->id])  }}">{{ $lot->name }}</a></h2>
+
+                <a wire:navigate href="{{route('lot.show', ['lot' => $lot->id])}}"
+                   class="inline-flex items-center border-black text-black bg-transparent font-medium rounded-lg text-sm pb-5 text-center">
+                    Inspect lot
+                    <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                </a>
 
                 <p class="font-light text-blue-500 md:text-lg">Bidding period: {{$lot->datetime_start}} - {{$lot->datetime_end}}</p>
                 <p class="font-light text-blue-500 md:text-lg">Minimum bid amount: € {{$lot->min_bid_amount}}</p>
@@ -92,11 +103,7 @@
 
                 <p class="mb-6 font-light text-gray-500 md:text-lg">{{ $lot->short_description }}</p>
 
-                <a wire:navigate href="{{route('lot.show', ['lot' => $lot->id])}}"
-                   class="inline-flex items-center border-blue-500 text-black bg-transparent hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-gray-800 dark:focus:ring-primary-900">
-                    Inspect lot
-                    <svg class="ml-2 -mr-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                </a>
+
             </div>
         </div>
     </section>

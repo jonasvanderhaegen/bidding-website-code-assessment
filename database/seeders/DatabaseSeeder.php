@@ -26,5 +26,6 @@ class DatabaseSeeder extends Seeder
 
         $this->call(StateSeeder::class);
         $this->call(LotSeeder::class);
+        $this->call(LotImageSeeder::class);
     }
 }

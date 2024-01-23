@@ -48,13 +48,14 @@ class Lot extends Model
             return $this->hasMany(Bid::class);
         }
 
+        public function images(): hasMany
+        {
+            return $this->hasMany(LotImage::class);
+        }
+
         // many Lots to one x
 
         // many Lots to many x
 
         // Polymorphic
-        public function images(): morphMany
-        {
-            return $this->morphMany(LotImage::class, 'imageable');
-        }
 }
