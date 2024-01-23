@@ -22,7 +22,6 @@ return new class extends Migration
             $table->longText('meta_description');
             $table->longText('short_description');
             $table->longText('long_description');
-            $table->float('base_total_estimated_value', 12, 2);
             $table->float('total_estimated_value', 12, 2);
             $table->bigInteger('highest_bid')->nullable();
             $table->integer('bidvibe_profit')->nullable();
