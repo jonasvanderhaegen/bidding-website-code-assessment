@@ -39,6 +39,6 @@ class LotShowPage extends Component
 
     public function render()
     {
-        return view('livewire.lot-show-page')->title( 'Lot:  ' . $this->lot->name . '| BidVibe');
+        return view('livewire.lot-show-page')->title( 'Lot:  ' . $this->lot->name . ' | BidVibe');
     }
 }
