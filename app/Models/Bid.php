@@ -15,6 +15,10 @@ class Bid extends Model
     // Variables
     protected $fillable = [
         'amount',
+        'email',
+        'phone',
+        'firstname',
+        'lastname',
         'lot_id',
         'user_id',
         'deleted_at'

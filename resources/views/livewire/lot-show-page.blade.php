@@ -16,26 +16,63 @@
             <div class="mt-4 md:mt-0">
                 <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">{{$lot->name}}</h2>
 
-                <!-- Modal toggle -->
-                <div class="flex justify-start mb-5">
-                    <button id="readProductButton" data-modal-target="readProductModal" data-modal-toggle="readProductModal" class="block text-white bg-blue-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-left" type="button">
-                        Show longer description
-                    </button>
-                </div>
 
                 <p class="mb-6 font-light text-blue-500 md:text-lg dark:text-gray-400">{{ $lot->short_description }}</p>
+                <p class="mb-6">{{ $lot->long_description }}</p>
 
+                <!-- Modal body -->
+                <form action="#" class="mb-6" wire:submit.prevent="save">
+                    <div class="grid gap-4 mb-4 sm:grid-cols-2">
+                        <div>
+                            <label for="firstname" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">First name</label>
+                            <input wire:model="form.firstname" type="text" name="firstname" id="firstname" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="First name" required="">
+                            @error('form.firstname')
+                            <span class="text-red-500  text-xs">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div>
+                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
+                            <input wire:model="form.lastname" type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Last name" required="">
+                            @error('form.lastname')
+                            <span class="text-red-500  text-xs">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div>
+                            <label for="Phone" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Phone number</label>
+                            <input wire:model="form.phone" type="phone" name="phone" id="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Phone number" required="">
+                            @error('form.phone')
+                            <span class="text-red-500  text-xs">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div>
+                            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">E-mail</label>
+                            <input wire:model="form.email" type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="E-mail" required="">
+                            @error('form.email')
+                            <span class="text-red-500  text-xs">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div>
+                            <label wire:poll="highestBid" for="bid_amount" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Bid amount (€ {{$highestAmount}})</label>
+                            <input wire:model="form.amount" type="text" name="bid_amount" id="bid_amount" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="$2999" required="">
+                            @error('form.amount')
+                            <span class="text-red-500  text-xs">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <input wire:model="form.lot_id" value="{{$lot->id}}" type="hidden" name="lot_id" id="lot_id">
+
+
+                    </div>
+                    <button type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                        <svg class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
+                        Place my bid!
+                    </button>
+                </form>
 
                 <div class="overflow-x-auto">
 
                     <h2 class="mb-4 text-xl tracking-tight font-extrabold text-gray-900 dark:text-white">Current bids</h2>
 
-                    <!-- Modal toggle -->
-                    <div class="flex justify-start mb-5">
-                        <button id="readProductButton" data-modal-target="readProductModal" data-modal-toggle="readProductModal" class="block text-white bg-blue-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-left" type="button">
-                            I want to place a bid as guest
-                        </button>
-                    </div>
 
                     @if($lot->bids->count())
 
@@ -46,7 +83,7 @@
                                     <th scope="col" class="px-4 py-3">Name</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody wire:poll>
                                 @foreach($lot->bids()->orderBy('amount', 'desc')->get(['amount', 'firstname']) as $bid)
                                     <tr class="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
                                         <td class="px-2 py-2">
@@ -67,26 +104,4 @@
         </div>
     </section>
 
-    <!-- Main modal -->
-    <div id="readProductModal" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-modal md:h-full">
-        <div class="relative p-4 w-full max-w-xl h-full md:h-auto">
-            <!-- Modal content -->
-            <div class="relative p-4 bg-white rounded-lg shadow dark:bg-gray-800 sm:p-5">
-                <!-- Modal header -->
-                <div class="flex justify-end mb-4 rounded-t sm:mb-5">
-
-                    <div>
-                        <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 inline-flex dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="readProductModal">
-                            <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                            <span class="sr-only">Close modal</span>
-                        </button>
-                    </div>
-                </div>
-                <dl>
-                    <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Long description</dt>
-                    <dd class="mb-4 font-light text-gray-500 sm:mb-5 dark:text-gray-400">{{ $lot->long_description }}</dd>
-                </dl>
-            </div>
-        </div>
-    </div>
 </div>
