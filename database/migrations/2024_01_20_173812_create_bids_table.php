@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->float('amount');
             $table->foreignIdFor(Lot::class);
-            $table->foreignIdFor(User::class);
+            $table->foreignIdFor(User::class)->nullable();
             $table->string('email');
             $table->string('phone');
             $table->string('firstname');
