@@ -3,8 +3,11 @@
 namespace App\Livewire\Forms;
 
 use App\Models\Bid;
+use App\Notifications\SendNotificationToWinnerOfLot;
+use Illuminate\Support\Facades\Notification;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
+use App\Notifications\BidReceived;
 
 class CreateBidForm extends Form
 {
@@ -45,7 +48,10 @@ class CreateBidForm extends Form
             'amount' => 'gt:' . $this->highestAmount
         ]);
 
-        Bid::create($this->all());
+        $bid = Bid::create($this->all());
+
+        Notification::route('mail', $bid->email)
+            ->notify(new BidReceived($bid));
 
         $this->reset('amount');
     }
