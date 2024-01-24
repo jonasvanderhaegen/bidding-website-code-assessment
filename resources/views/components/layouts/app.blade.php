@@ -12,6 +12,7 @@
         <script>
             document.addEventListener('livewire:navigated', function () {
                 console.log('navigated');
+                document.getElementById('readProductButton').click();
                 initFlowbite();
             })
         </script>

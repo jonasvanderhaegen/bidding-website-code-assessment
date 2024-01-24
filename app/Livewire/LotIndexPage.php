@@ -17,7 +17,7 @@ class LotIndexPage extends Component
     #[Computed()]
     public function lots()
     {
-        return Lot::whereStatus(true)->latest()->where('name', 'like', "%{$this->search}%")->paginate(3);
+        return Lot::whereStatus(true)->orderBy('priority', 'desc')->where('name', 'like', "%{$this->search}%")->paginate(3);
     }
 
     public function render()
