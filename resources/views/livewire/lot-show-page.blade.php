@@ -97,6 +97,8 @@
                                 </tbody>
                         </table>
 
+                    @else
+                        <p>There are no bids yet. You could be the first!</p>
                     @endif
                 </div>
 

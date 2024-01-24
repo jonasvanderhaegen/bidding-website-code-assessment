@@ -20,16 +20,22 @@ class LotShowPage extends Component
 
     public function highestBid(): void
     {
-        $this->highestAmount = $this->lot->bids->last()->amount;
-        $this->form->setHighestAmount($this->highestAmount);
+        if ($this->lot->bids->count()) {
+            $this->highestAmount = $this->lot->bids->last()->amount;
+            $this->form->setHighestAmount($this->highestAmount);
+        }
     }
 
     public function mount(Lot $lot): void
     {
-        $this->highestAmount = $this->lot->bids->last()->amount;
-
+        if ($this->lot->bids->count()) {
+            $this->highestAmount = $lot->bids->last()->amount > $lot->min_bid_amount ? $lot->bids->last()->amount : $lot->min_bid_amount;
+            $this->form->setHighestAmount($this->highestAmount);
+        } else {
+            $this->highestAmount = $lot->min_bid_amount;
+            $this->form->setHighestAmount($this->highestAmount);
+        }
         $this->form->setLotId($lot->id);
-        $this->form->setHighestAmount($this->highestAmount);
     }
 
     public function render()
