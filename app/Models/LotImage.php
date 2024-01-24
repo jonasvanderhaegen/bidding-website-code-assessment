@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class LotImage extends Model
 {
     // Traits
+    use softDeletes;
 
     // Variables
     protected $fillable = [

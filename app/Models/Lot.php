@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\MorphMany;
@@ -28,9 +29,11 @@ class Lot extends Model
         'total_estimated_value',
         'highest_bid',
         'bidvibe_profit',
+        'processed_after_expiration',
         'priority',
         'status',
-        'state_id'
+        'state_id',
+        'user_id'
     ];
 
 
@@ -40,6 +43,11 @@ class Lot extends Model
         public function order(): hasOne
         {
             return $this->hasOne(Order::class);
+        }
+
+        public function user(): belongsTo
+        {
+            return $this->belongsTo(User::class);
         }
 
         // one Lot to many x
