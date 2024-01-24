@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\State;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -27,10 +28,13 @@ return new class extends Migration
             $table->integer('bidvibe_profit')->nullable();
             $table->integer('priority')->default(0);
             $table->boolean('status')->default(false);
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->foreignIdFor(State::class)->references('id')->on('states');
             $table->boolean('processed_after_expiration')->default(false);
             $table->softDeletes();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

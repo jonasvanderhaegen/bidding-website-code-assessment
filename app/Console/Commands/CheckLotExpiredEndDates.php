@@ -2,7 +2,11 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Lot;
+use App\Models\User;
+use App\Notifications\SendNotificationToWinnerOfLot;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Notification;
 
 class CheckLotExpiredEndDates extends Command
 {
@@ -25,6 +29,30 @@ class CheckLotExpiredEndDates extends Command
      */
     public function handle()
     {
-        //
+        ray(\Carbon\Carbon::now());
+
+        foreach(Lot::where('status', '=', true)->where('processed_after_expiration', '=', false)
+                    ->where('datetime_end', '<', \Carbon\Carbon::now())->get() as $lot) {
+
+            if ($lot->bids->count()) {
+
+                $bid = $lot->bids()->latest()->first();
+
+                ray($bid);
+
+                if ($user = User::where('email', '=', $bid->email)->first()) {
+                    //ray($bid, $user);
+                    $lot->update(['user_id' => $user->id]);
+                    $bid->update(['user_id' => $user->id]);
+                }
+
+                Notification::route('mail', $bid->email)
+                    ->notify(new SendNotificationToWinnerOfLot($lot, $bid));
+
+            }
+
+            //$lot->update(['processed_after_expiration'=> true]);
+
+        }
     }
 }
