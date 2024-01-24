@@ -15,7 +15,6 @@ class LotShowPage extends Component
     public function save(): void
     {
         $this->form->store();
-        $this->form->reset('amount');
     }
 
     public function highestBid(): void
