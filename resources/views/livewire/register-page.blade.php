@@ -5,7 +5,7 @@
                 <h1 class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
                     Create an account
                 </h1>
-                <form wire:submit.prevent="submitForm" method="POST" class="space-y-4 md:space-y-6" action="#">
+                <form wire:submit.prevent="save" method="POST" class="space-y-4 md:space-y-6" action="#">
                     <div>
                         <label for="name" class="block mb-2 text-sm font-medium text-gray-900">Your full name</label>
                         <input wire:model="form.name" type="text" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="John Doe" required="">

@@ -12,15 +12,11 @@ use Livewire\Component;
 
 class RegisterPage extends Component
 {
-    public function submitForm(): void
+    public RegisterForm $form;
+
+    public function save(): void
     {
-        $validated = $this->form->validate();
-
-        $validated['password'] = Hash::make($validated['password']);
-        event(new Registered($user = User::create($validated)));
-
-        Auth::login($user);
-
+        $validated = $this->form->store();
         $this->redirect(RouteServiceProvider::HOME, navigate: true);
     }
 

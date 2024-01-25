@@ -4,12 +4,12 @@ Install the "flowbite-typography" NPM package to apply styles and format the art
 URL: https://flowbite.com/docs/components/typography/
 -->
 <div>
-<main class="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white dark:bg-gray-900 antialiased">
+<main class="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white antialiased">
     <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
-        <article class="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
+        <article class="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue">
             <header class="mb-4 lg:mb-6 not-format">
 
-                <h1 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl dark:text-white">Terms and conditions</h1>
+                <h1 class="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl">Terms and conditions</h1>
             </header>
 
             <p class="lead mb-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi metus ex, suscipit eget tempus sed, sollicitudin dapibus magna. Etiam vel volutpat enim. Aenean at diam ut velit laoreet sodales. Donec eget elit ante. Curabitur pharetra vehicula finibus. Pellentesque vitae eros laoreet, rhoncus ex eu, scelerisque tortor. Nullam aliquet lobortis accumsan. Cras eu molestie lorem. Vivamus pretium mattis tellus sodales egestas. Sed mattis orci a erat lobortis auctor. Morbi in vulputate erat.</p>

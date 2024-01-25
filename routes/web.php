@@ -21,8 +21,6 @@ Route::get('/terms-and-conditions', \App\Livewire\TermsConditionsPage::class)->n
 Route::middleware('guest')->group(function () {
     Route::get('login', \App\Livewire\LoginPage::class)->name('login');
     Route::get('register', \App\Livewire\RegisterPage::class)->name('register');
-    Route::get('forget-password', \App\Livewire\ForgotPasswordPage::class)->name('password.request');
-    Route::get('reset-password/{token}', \App\Livewire\ResetPasswordPage::class)->name('password.reset');
 });
 
 Route::middleware(['auth'])->group(function () {

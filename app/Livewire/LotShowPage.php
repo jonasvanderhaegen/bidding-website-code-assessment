@@ -4,6 +4,7 @@ namespace App\Livewire;
 
 use App\Livewire\Forms\CreateBidForm;
 use App\Models\Lot;
+use Carbon\Carbon;
 use Livewire\Component;
 
 class LotShowPage extends Component
@@ -11,6 +12,7 @@ class LotShowPage extends Component
     public Lot $lot;
     public float $highestAmount;
     public CreateBidForm $form;
+    public bool $biddingIsOngoing = false;
 
     public function save(): void
     {
@@ -27,6 +29,10 @@ class LotShowPage extends Component
 
     public function mount(Lot $lot): void
     {
+        if (Carbon::now() > $lot->datetime_start && Carbon::now() < $lot->datetime_end) {
+            $this->biddingIsOngoing = true;
+        }
+
         if ($this->lot->bids->count()) {
             $this->highestAmount = $lot->bids->last()->amount > $lot->min_bid_amount ? $lot->bids->last()->amount : $lot->min_bid_amount;
             $this->form->setHighestAmount($this->highestAmount);
