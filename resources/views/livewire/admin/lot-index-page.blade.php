@@ -51,9 +51,6 @@
                         <td class="px-4 py-3 flex items-center justify-end">
                             <ul class="py-1 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="apple-imac-27-dropdown-button">
                                 <li>
-                                    <a wire:navigate href="{{route('admin.lot.show', ['lot' => $lot->id])}}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
-                                </li>
-                                <li>
                                     <a wire:navigate href="{{route('admin.lot.edit', ['lot' => $lot->id])}}" class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Edit</a>
                                 </li>
                                 <li>
