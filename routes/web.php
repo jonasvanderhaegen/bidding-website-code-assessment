@@ -23,13 +23,20 @@ Route::middleware('guest')->group(function () {
     Route::get('register', \App\Livewire\RegisterPage::class)->name('register');
     Route::get('forget-password', \App\Livewire\ForgotPasswordPage::class)->name('password.request');
     Route::get('reset-password/{token}', \App\Livewire\ResetPasswordPage::class)->name('password.reset');
-
 });
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('admin', \App\Livewire\AdminDashboardPage::class)->name('admin.dashoard');
-    Route::get('admin/lots', \App\Livewire\AdminLotIndexPage::class)->name('admin.lot.index');
-    Route::get('admin/lots/{lot}', \App\Livewire\AdminLotShowPage::class)->name('admin.lot.show');
+    Route::group([
+        'prefix' => 'admin',
+        'middleware' => 'is_admin',
+        'as' => 'admin.'
+    ], function () {
+        Route::get('lots', \App\Livewire\Admin\LotIndexPage::class)->name('lot.index');
+        Route::get('lots/create', \App\Livewire\Admin\LotCreatePage::class)->name('lot.create');
+        Route::get('lots/{lot}/edit', \App\Livewire\Admin\LotEditPage::class)->name('lot.edit');
+        Route::get('lots/{lot}', \App\Livewire\Admin\LotShowPage::class)->name('lot.show');
+    });
+
 });
 
 

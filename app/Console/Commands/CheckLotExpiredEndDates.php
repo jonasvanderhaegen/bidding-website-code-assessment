@@ -27,18 +27,14 @@ class CheckLotExpiredEndDates extends Command
     /**
      * Execute the console command.
      */
-    public function handle()
+    public function handle(): void
     {
-        ray(\Carbon\Carbon::now());
-
         foreach(Lot::where('status', '=', true)->where('processed_after_expiration', '=', false)
                     ->where('datetime_end', '<', \Carbon\Carbon::now())->get() as $lot) {
 
             if ($lot->bids->count()) {
 
                 $bid = $lot->bids()->latest()->first();
-
-                ray($bid);
 
                 if ($user = User::where('email', '=', $bid->email)->first()) {
                     //ray($bid, $user);
@@ -51,8 +47,7 @@ class CheckLotExpiredEndDates extends Command
 
             }
 
-            //$lot->update(['processed_after_expiration'=> true]);
-
+            $lot->update(['processed_after_expiration'=> true]);
         }
     }
 }

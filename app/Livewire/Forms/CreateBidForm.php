@@ -3,7 +3,6 @@
 namespace App\Livewire\Forms;
 
 use App\Models\Bid;
-use App\Notifications\SendNotificationToWinnerOfLot;
 use Illuminate\Support\Facades\Notification;
 use Livewire\Attributes\Validate;
 use Livewire\Form;
@@ -42,8 +41,6 @@ class CreateBidForm extends Form
 
     public function store()
     {
-        ray($this);
-
         $this->validate([
             'amount' => 'gt:' . $this->highestAmount
         ]);

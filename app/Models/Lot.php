@@ -16,7 +16,10 @@ class Lot extends Model
 
 
     // Variables
-    public array $translatable = ['name', 'meta_description', 'short_description', 'long_description'];
+    protected $casts = [
+        'status' => 'boolean'
+    ];
+
     protected $fillable = [
         'currency',
         'datetime_start',

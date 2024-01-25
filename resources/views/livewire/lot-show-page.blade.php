@@ -14,8 +14,16 @@
             @endif
             </div>
             <div class="mt-4 md:mt-0">
-                <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">{{$lot->name}}</h2>
 
+                @can('admin')
+                    <div class="mb-5">
+                        @can('update', $lot)
+                            <a wire:navigate href="{{route('admin.lot.edit', ['lot' => $lot->id])}}" class="text-white bg-green-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none">Edit</a>
+                        @endcan
+                    </div>
+                @endcan
+
+                <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-gray-900 dark:text-white">{{$lot->name}}</h2>
 
                 <p class="mb-6 font-light text-blue-500 md:text-lg dark:text-gray-400">{{ $lot->short_description }}</p>
                 <p class="mb-6">{{ $lot->long_description }}</p>
