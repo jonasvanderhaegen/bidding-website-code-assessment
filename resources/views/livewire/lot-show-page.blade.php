@@ -5,9 +5,8 @@
             <div class="">
             @if($lot->images()->count())
                 @foreach($lot->images()->orderBy('primary', 'desc')->get() as $img)
-
+                    <!-- TODO: replace img url generation, this is not ok -->
                     <img class="mb-5 w-full" src="{{ '../' . $img->base64_normal }}" />
-
                 @endforeach
             @else
                 <img class="w-full" src="https://placehold.co/600x400?text=No+primary+image" alt="dashboard image">
