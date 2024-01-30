@@ -35,6 +35,7 @@
         <div class="gap-8 py-8 px-4 mx-auto max-w-screen-xl xl:gap-16 md:grid md:grid-cols-2 sm:py-16 lg:px-6">
 
             @if($lot->images()->wherePrimary(true)->count())
+                <!-- TODO: replace img url generation, this is not ok -->
                 <img class="w-full" src="{{ '../' . $lot->images()->wherePrimary(true)->first()->base64_normal }}" />
             @else
                 <img class="w-full" src="https://placehold.co/600x400?text=No+primary+image" alt="dashboard image">
