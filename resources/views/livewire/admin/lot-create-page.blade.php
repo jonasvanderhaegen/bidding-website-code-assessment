@@ -19,7 +19,6 @@
                     @enderror
                 </div>
 
-
                 <div class="w-full">
                     <label for="min_bid_amount" class="block mb-2 text-sm font-medium text-gray-900 ">total estimated value</label>
                     <input wire:model="form.total_estimated_value" type="text" name="min_bid_amount" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" placeholder="$2999" required="">
@@ -92,6 +91,13 @@
                     <span class="text-red-500  text-xs">{{ $message }}</span>
                     @enderror
                 </div>
+            </div>
+            <div class="sm:col-span-2">
+                <label for="image" class="block mb-2 text-sm font-medium text-gray-900 ">Image</label>
+                <input wire:model="form.image" type="file" id="image" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5" required="">
+                @error('form.image')
+                <span class="text-red-500  text-xs">{{ $message }}</span>
+                @enderror
             </div>
             <button type="submit" class="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-green-700 rounded-lg focus:ring-4 focus:ring-primary-200 hover:bg-primary-800">
                 Add lot

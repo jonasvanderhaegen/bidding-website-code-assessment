@@ -6,9 +6,11 @@ use App\Livewire\Forms\CreateLotForm;
 use App\Models\Lot;
 use App\Models\State;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class LotCreatePage extends Component
 {
+    use WithFileUploads;
 
     public $states = [];
 

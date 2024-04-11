@@ -6,7 +6,7 @@
             @if($lot->images()->count())
                 @foreach($lot->images()->orderBy('primary', 'desc')->get() as $img)
                     <!-- TODO: replace img url generation, this is not ok -->
-                    <img class="mb-5 w-full" src="{{ '../' . $img->base64_normal }}" />
+                    <img class="mb-5 w-full" src="data:image/png;base64,{{$img->base64_normal }}" />
                 @endforeach
             @else
                 <img class="w-full" src="https://placehold.co/600x400?text=No+primary+image" alt="dashboard image">
@@ -69,7 +69,7 @@
                         </div>
                         <div>
                             <label wire:poll="highestBid" for="bid_amount" class="block mb-2 text-sm font-medium text-gray-900 ">Bid amount (Greater than € {{$highestAmount}})</label>
-                            <input wire:model="form.amount" type="text" name="bid_amount" id="bid_amount" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="$2999" required="">
+                            <input wire:model="form.amount" type="text" name="bid_amount" id="bid_amount" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 " placeholder="2999€" required="">
                             @error('form.amount')
                             <span class="text-red-500  text-xs">{{ $message }}</span>
                             @enderror

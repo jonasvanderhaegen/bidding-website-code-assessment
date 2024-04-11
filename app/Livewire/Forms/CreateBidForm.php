@@ -47,8 +47,8 @@ class CreateBidForm extends Form
 
         $bid = Bid::create($this->all());
 
-        Notification::route('mail', $bid->email)
-            ->notify(new BidReceived($bid));
+        // Notification::route('mail', $bid->email)
+        //     ->notify(new BidReceived($bid));
 
         $this->reset('amount');
     }

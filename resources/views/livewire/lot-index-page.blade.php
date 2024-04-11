@@ -36,7 +36,7 @@
 
             @if($lot->images()->wherePrimary(true)->count())
                 <!-- TODO: replace img url generation, this is not ok -->
-                <img class="w-full" src="{{ '../' . $lot->images()->wherePrimary(true)->first()->base64_normal }}" />
+                <img class="w-full" src="data:image/png;base64,{{ $lot->images()->wherePrimary(true)->first()->base64_normal }}" />
             @else
                 <img class="w-full" src="https://placehold.co/600x400?text=No+primary+image" alt="dashboard image">
             @endif
